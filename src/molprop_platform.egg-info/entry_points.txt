@@ -1,0 +1,8 @@
+[console_scripts]
+molprop-bioisostere = molprop_platform.bioisostere.cli:main
+molprop-lookup = molprop_platform.lookup.cli:main
+molprop-mmp = molprop_platform.mmp.cli:main
+molprop-pareto = molprop_platform.pareto.cli:main
+molprop-sar = molprop_platform.sar.cli:main
+molprop-visualize = molprop_platform.viz.cli:main
+molprop-web = molprop_platform.web.cli:main

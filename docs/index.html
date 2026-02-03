@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MolProp Platform</title>
+  <style>
+    :root{--bg:#0b1220;--card:#0f1b31;--text:#e7eefc;--muted:#a9b8d6;--brand:#6aa6ff;--border:rgba(255,255,255,.08)}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:linear-gradient(180deg,var(--bg),#070b14);color:var(--text)}
+    .container{max-width:1040px;margin:0 auto;padding:24px}
+    .nav{display:flex;gap:14px;align-items:center;justify-content:space-between}
+    .nav a{color:var(--muted);text-decoration:none}
+    .nav a:hover{color:var(--text)}
+    .hero{padding:52px 0 22px}
+    h1{font-size:2rem;margin:0 0 10px}
+    p{color:var(--muted);line-height:1.6}
+    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid var(--border);color:var(--text);text-decoration:none}
+    .btn.primary{background:var(--brand);border-color:transparent;color:#061027;font-weight:600}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+    .card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:16px}
+    pre{background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:12px;padding:14px;overflow:auto;color:var(--text)}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;font-size:.92rem}
+    .section{margin-top:26px}
+    .footer{margin:42px 0 18px;color:var(--muted);font-size:.9rem}
+    @media (max-width:760px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <div><strong>MolProp Platform</strong> <span style="color:var(--muted)">v1.0</span></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="#install">Install</a>
+        <a href="quickstart.html">Quickstart</a>
+        <a href="tools/">Tools</a>
+        <a href="https://github.com/kelokely/molprop-platform" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <h1>MolProp Platform: web + advanced analytics on top of MolProp Toolkit tables.</h1>
+      <p>
+        This repo is the fast-moving companion to <em>molprop-toolkit</em>. The toolkit stays stable and owns the results-table
+        schema; the platform adds interactive apps (Streamlit), visualization dashboards (Plotly), and higher-level medchem
+        workflows (MMP/SAR/Pareto/lookup/bioisosteres).
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="quickstart.html">Quickstart</a>
+        <a class="btn" href="https://github.com/kelokely/-molprop-toolkit" target="_blank" rel="noreferrer">Core toolkit</a>
+      </div>
+    </section>
+
+    <section class="section" id="install">
+      <h2>Install</h2>
+      <div class="grid">
+        <div class="card">
+          <h3 style="margin-top:0">Recommended (dev + viz)</h3>
+          <pre><code>git clone https://github.com/kelokely/molprop-platform.git
+cd molprop-platform
+
+pip install -e ".[dev,viz]"</code></pre>
+          <p>Installs the platform plus visualization dependencies. Core toolkit integration is an extra.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">With core toolkit integration</h3>
+          <pre><code># installs molprop-toolkit from GitHub (until core is on PyPI)
+pip install -e ".[core]"
+
+# recommended full setup
+pip install -e ".[core,web,viz]"</code></pre>
+          <p>Enables Streamlit UI and reads MolProp results tables produced by the core toolkit.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What’s included (v1 skeleton)</h2>
+      <div class="grid">
+        <div class="card">
+          <h3 style="margin-top:0">molprop-visualize</h3>
+          <p>Create an interactive PCA/UMAP projection from a results table. Writes <code>.html</code> + a projection CSV.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">molprop-web</h3>
+          <p>Starts a minimal Streamlit app. The next iterations will orchestrate calc/analyze/report/picklists pipelines.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      MolProp Platform is designed to keep MolProp Toolkit workflows intact by remaining table-first and additive.
+    </div>
+  </div>
+</body>
+</html>
+

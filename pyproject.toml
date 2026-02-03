@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "molprop-platform"
+version = "1.0.0"
+description = "MolProp Platform: a web + analytics layer that builds on molprop-toolkit tables"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Khaled Elokely"}]
+keywords = ["cheminformatics", "medchem", "rdkit", "admet", "drug-discovery"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+]
+
+# Keep base install intentionally light.
+dependencies = [
+  "pandas>=1.5",
+]
+
+[project.optional-dependencies]
+# Core integration: installs molprop-toolkit from GitHub (good for now; switch to PyPI once you publish core).
+core = [
+  "molprop-toolkit @ git+https://github.com/kelokely/-molprop-toolkit.git",
+]
+
+web = [
+  "streamlit>=1.31",
+]
+
+viz = [
+  "numpy>=1.21",
+  "plotly>=5.18",
+  "scikit-learn>=1.3",
+  "umap-learn>=0.5.5",
+]
+
+lookup = [
+  "requests>=2.31",
+  "requests-cache>=1.2",
+]
+
+dev = [
+  "pytest>=7",
+  "ruff>=0.1",
+  "black>=23",
+]
+
+[project.scripts]
+molprop-visualize = "molprop_platform.viz.cli:main"
+molprop-web = "molprop_platform.web.cli:main"
+
+# Placeholders for upcoming tools (wired now, implemented incrementally)
+molprop-pareto = "molprop_platform.pareto.cli:main"
+molprop-mmp = "molprop_platform.mmp.cli:main"
+molprop-sar = "molprop_platform.sar.cli:main"
+molprop-lookup = "molprop_platform.lookup.cli:main"
+molprop-bioisostere = "molprop_platform.bioisostere.cli:main"
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "C4"]
+ignore = ["E501", "B008"]
+
+[tool.black]
+line-length = 88
+

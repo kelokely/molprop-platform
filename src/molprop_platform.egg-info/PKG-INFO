@@ -1,0 +1,83 @@
+Metadata-Version: 2.4
+Name: molprop-platform
+Version: 1.0.0
+Summary: MolProp Platform: a web + analytics layer that builds on molprop-toolkit tables
+Author: Khaled Elokely
+License: MIT
+Keywords: cheminformatics,medchem,rdkit,admet,drug-discovery
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas>=1.5
+Provides-Extra: core
+Requires-Dist: molprop-toolkit @ git+https://github.com/kelokely/-molprop-toolkit.git ; extra == "core"
+Provides-Extra: web
+Requires-Dist: streamlit>=1.31; extra == "web"
+Provides-Extra: viz
+Requires-Dist: numpy>=1.21; extra == "viz"
+Requires-Dist: plotly>=5.18; extra == "viz"
+Requires-Dist: scikit-learn>=1.3; extra == "viz"
+Requires-Dist: umap-learn>=0.5.5; extra == "viz"
+Provides-Extra: lookup
+Requires-Dist: requests>=2.31; extra == "lookup"
+Requires-Dist: requests-cache>=1.2; extra == "lookup"
+Provides-Extra: dev
+Requires-Dist: pytest>=7; extra == "dev"
+Requires-Dist: ruff>=0.1; extra == "dev"
+Requires-Dist: black>=23; extra == "dev"
+Dynamic: license-file
+
+# MolProp Platform
+
+MolProp Platform is the **expanded, batteries-included** companion to **MolProp Toolkit**. The toolkit remains the stable
+“table compiler” and schema authority; the platform adds interactive workflows and higher-level analysis modules that
+consume those tables. The design goal is that existing MolProp Toolkit pipelines keep working unchanged while the
+platform can iterate quickly on new user-facing features.
+
+## Relationship to MolProp Toolkit
+
+MolProp Toolkit produces analysis-ready CSV/TSV/Parquet tables with reproducible column definitions and provenance.
+MolProp Platform reads those tables and produces additional artifacts such as interactive Plotly dashboards, Pareto
+front viewers, SAR/MMP summaries, and optional web apps.
+
+## Install
+
+Because RDKit is best installed via conda-forge, most users should create a conda environment first.
+
+```bash
+git clone https://github.com/kelokely/molprop-platform.git
+cd molprop-platform
+
+# optional but recommended for chem work: create/activate your RDKit environment first
+# conda env create -f environment.yml
+# conda activate molprop-toolkit
+
+pip install -e ".[dev]"
+```
+
+To install the core dependency from GitHub (until core is published on PyPI):
+
+```bash
+pip install -e ".[core]"
+```
+
+To enable visualization and web UI extras:
+
+```bash
+pip install -e ".[core,viz,web]"
+```
+
+## Commands (v1 skeleton)
+
+This repo ships CLI entrypoints early so you can build docs and workflows while implementing features incrementally.
+
+- `molprop-visualize`: create PCA/UMAP plots from a results table (CSV/Parquet)
+- `molprop-web`: start a Streamlit UI (placeholder)
+- `molprop-pareto`, `molprop-mmp`, `molprop-sar`, `molprop-lookup`, `molprop-bioisostere`: placeholders
+
+## License
+
+MIT
+
