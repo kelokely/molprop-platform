@@ -5,93 +5,190 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MolProp Platform</title>
   <style>
-    :root{--bg:#0b1220;--card:#0f1b31;--text:#e7eefc;--muted:#a9b8d6;--brand:#6aa6ff;--border:rgba(255,255,255,.08)}
-    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:linear-gradient(180deg,var(--bg),#070b14);color:var(--text)}
-    .container{max-width:1040px;margin:0 auto;padding:24px}
-    .nav{display:flex;gap:14px;align-items:center;justify-content:space-between}
-    .nav a{color:var(--muted);text-decoration:none}
-    .nav a:hover{color:var(--text)}
-    .hero{padding:52px 0 22px}
-    h1{font-size:2rem;margin:0 0 10px}
-    p{color:var(--muted);line-height:1.6}
-    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid var(--border);color:var(--text);text-decoration:none}
-    .btn.primary{background:var(--brand);border-color:transparent;color:#061027;font-weight:600}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
-    .card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:16px}
-    pre{background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:12px;padding:14px;overflow:auto;color:var(--text)}
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1b31;
+      --text:#e7eefc;
+      --muted:#a9b8d6;
+      --brand:#6aa6ff;
+      --border:rgba(255,255,255,.10);
+      --shadow:0 14px 40px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:radial-gradient(1200px 420px at 20% 0%, rgba(106,166,255,.18), transparent 65%), linear-gradient(180deg,var(--bg),#070b14);color:var(--text)}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1080px;margin:0 auto;padding:24px}
+
+    .topbar{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{display:flex;gap:10px;align-items:center}
+    .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#9b7bff);box-shadow:var(--shadow)}
+    .brand h1{font-size:1.05rem;margin:0}
+    .pill{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border:1px solid var(--border);border-radius:999px;color:var(--muted)}
+
+    .hero{padding:46px 0 10px}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch}
+    @media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+
+    .card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.22)}
+    .hero h2{font-size:2.1rem;line-height:1.12;margin:0 0 10px}
+    .muted{color:var(--muted);line-height:1.6}
+
+    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--border);color:var(--text);text-decoration:none}
+    .btn.primary{background:var(--brand);border-color:transparent;color:#061027;font-weight:700}
+
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .tabbtn{padding:10px 12px;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer}
+    .tabbtn[aria-selected="true"]{background:rgba(106,166,255,.18);color:var(--text);border-color:rgba(106,166,255,.35)}
+
+    .tab{display:none;margin-top:14px}
+    .tab.active{display:block}
+
+    pre{background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:14px;padding:14px;overflow:auto;color:var(--text)}
     code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;font-size:.92rem}
-    .section{margin-top:26px}
-    .footer{margin:42px 0 18px;color:var(--muted);font-size:.9rem}
-    @media (max-width:760px){.grid{grid-template-columns:1fr}}
+
+    .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    @media (max-width:900px){.grid2{grid-template-columns:1fr}}
+
+    .section-title{margin:0 0 6px;font-size:1.1rem}
+    .k{display:inline-block;padding:2px 8px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--muted);font-size:.86rem}
+
+    .footer{margin:34px 0 10px;color:var(--muted);font-size:.92rem}
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="nav">
-      <div><strong>MolProp Platform</strong> <span style="color:var(--muted)">v1.0</span></div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a href="#install">Install</a>
-        <a href="quickstart.html">Quickstart</a>
-        <a href="tools/">Tools</a>
-        <a href="https://github.com/kelokely/molprop-platform" target="_blank" rel="noreferrer">GitHub</a>
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>MolProp Platform <span class="k">v1.0</span></h1>
+          <div class="muted" style="font-size:.92rem">A web + advanced analytics layer on top of MolProp Toolkit tables.</div>
+        </div>
       </div>
-    </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="pill" href="quickstart.html">Quickstart</a>
+        <a class="pill" href="tools/">Tools</a>
+        <a class="pill" href="https://github.com/kelokely/molprop-platform" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </header>
 
     <section class="hero">
-      <h1>MolProp Platform: web + advanced analytics on top of MolProp Toolkit tables.</h1>
-      <p>
-        This repo is the fast-moving companion to <em>molprop-toolkit</em>. The toolkit stays stable and owns the results-table
-        schema; the platform adds interactive apps (Streamlit), visualization dashboards (Plotly), and higher-level medchem
-        workflows (MMP/SAR/Pareto/lookup/bioisosteres).
-      </p>
-      <div class="cta">
-        <a class="btn primary" href="quickstart.html">Quickstart</a>
-        <a class="btn" href="https://github.com/kelokely/-molprop-toolkit" target="_blank" rel="noreferrer">Core toolkit</a>
-      </div>
-    </section>
-
-    <section class="section" id="install">
-      <h2>Install</h2>
-      <div class="grid">
+      <div class="hero-grid">
         <div class="card">
-          <h3 style="margin-top:0">Recommended (dev + viz)</h3>
-          <pre><code>git clone https://github.com/kelokely/molprop-platform.git
+          <h2>From MolProp tables to decisions, faster.</h2>
+          <p class="muted">
+            MolProp Toolkit stays stable as the “table compiler” and schema authority. MolProp Platform is the fast-moving companion that
+            adds a Streamlit GUI, interactive Plotly dashboards, and higher-level medchem workflows while keeping existing CLI pipelines intact.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="quickstart.html">Get started</a>
+            <a class="btn" href="https://kelokely.github.io/-molprop-toolkit/" target="_blank" rel="noreferrer">MolProp Toolkit docs</a>
+          </div>
+
+          <div class="tabs" role="tablist" aria-label="MolProp Platform tabs">
+            <button class="tabbtn" role="tab" aria-selected="true" data-tab="overview">Overview</button>
+            <button class="tabbtn" role="tab" aria-selected="false" data-tab="install">Install</button>
+            <button class="tabbtn" role="tab" aria-selected="false" data-tab="web">Web app</button>
+            <button class="tabbtn" role="tab" aria-selected="false" data-tab="viz">Visualization</button>
+            <button class="tabbtn" role="tab" aria-selected="false" data-tab="connect">Connect</button>
+          </div>
+
+          <div id="overview" class="tab active" role="tabpanel">
+            <p class="muted">
+              The platform supports two entry paths that converge on the same artifact: a MolProp results table and a run folder with logs,
+              plots, and optional HTML reports/picklists. You can start from SMILES (calculator mode) or start from an existing results table
+              (analysis-only mode).
+            </p>
+            <div class="grid2">
+              <div class="card">
+                <div class="section-title">Generate</div>
+                <p class="muted" style="margin:8px 0 0">Upload <span class="k">.smi</span> → run <span class="k">molprop-calc-v5</span> → optional report/picklists → download a zip bundle.</p>
+              </div>
+              <div class="card">
+                <div class="section-title">Analyze</div>
+                <p class="muted" style="margin:8px 0 0">Upload <span class="k">.parquet</span>/<span class="k">.csv</span> → PCA/UMAP dashboards → optional report/picklists → download a zip bundle.</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="install" class="tab" role="tabpanel">
+            <div class="grid2">
+              <div class="card">
+                <div class="section-title">Platform (viz + web)</div>
+                <pre><code>git clone https://github.com/kelokely/molprop-platform.git
 cd molprop-platform
 
-pip install -e ".[dev,viz]"</code></pre>
-          <p>Installs the platform plus visualization dependencies. Core toolkit integration is an extra.</p>
-        </div>
-        <div class="card">
-          <h3 style="margin-top:0">With core toolkit integration</h3>
-          <pre><code># installs molprop-toolkit from GitHub (until core is on PyPI)
-pip install -e ".[core]"
+pip install -e ".[dev,web,viz]"</code></pre>
+                <p class="muted" style="margin:8px 0 0">Installs the Streamlit UI and visualization stack.</p>
+              </div>
+              <div class="card">
+                <div class="section-title">Add core toolkit integration</div>
+                <pre><code># installs MolProp Toolkit from GitHub (until core is on PyPI)
+pip install -e ".[core]"</code></pre>
+                <p class="muted" style="margin:8px 0 0">Enables calculator mode in the web app by providing <span class="k">molprop-calc-v5</span>.</p>
+              </div>
+            </div>
+          </div>
 
-# recommended full setup
-pip install -e ".[core,web,viz]"</code></pre>
-          <p>Enables Streamlit UI and reads MolProp results tables produced by the core toolkit.</p>
-        </div>
-      </div>
-    </section>
+          <div id="web" class="tab" role="tabpanel">
+            <p class="muted">Start the Streamlit app and choose a workflow tab inside the UI.</p>
+            <pre><code>molprop-web</code></pre>
+            <p class="muted" style="margin-top:8px">If you installed the core toolkit, the app can run calculators from uploaded SMILES; otherwise it runs in analysis-only mode.</p>
+          </div>
 
-    <section class="section">
-      <h2>What’s included (v1 skeleton)</h2>
-      <div class="grid">
-        <div class="card">
-          <h3 style="margin-top:0">molprop-visualize</h3>
-          <p>Create an interactive PCA/UMAP projection from a results table. Writes <code>.html</code> + a projection CSV.</p>
+          <div id="viz" class="tab" role="tabpanel">
+            <p class="muted">Generate a PCA/UMAP dashboard from an existing results table.</p>
+            <pre><code>molprop-visualize results.parquet -o viz --method umap</code></pre>
+            <p class="muted" style="margin-top:8px">Outputs an interactive HTML scatter plot plus a projection CSV.</p>
+          </div>
+
+          <div id="connect" class="tab" role="tabpanel">
+            <p class="muted">
+              MolProp Toolkit and MolProp Platform are connected by a stable interface: the results table schema. Toolkit produces tables;
+              platform consumes them and creates additive artifacts. This keeps existing pipelines intact and makes Milestone B tooling
+              easy to build as a table consumer.
+            </p>
+            <pre><code># 1) make a MolProp table
+molprop-calc-v5 library.smi -o results.parquet
+
+# 2) visualize and share
+molprop-visualize results.parquet -o viz --method pca</code></pre>
+          </div>
         </div>
+
         <div class="card">
-          <h3 style="margin-top:0">molprop-web</h3>
-          <p>Starts a minimal Streamlit app. The next iterations will orchestrate calc/analyze/report/picklists pipelines.</p>
+          <div class="section-title">Quick links</div>
+          <p class="muted" style="margin:8px 0 0"><a href="quickstart.html">Quickstart</a> runs a complete happy path and explains the install options.</p>
+          <p class="muted" style="margin:10px 0 0"><a href="tools/">Tools</a> lists CLI commands shipped in the platform.</p>
+          <p class="muted" style="margin:10px 0 0"><a href="https://kelokely.github.io/-molprop-toolkit/" target="_blank" rel="noreferrer">Toolkit docs</a> is the schema and column authority.</p>
+          <div class="section-title" style="margin-top:18px">Design principle</div>
+          <p class="muted" style="margin:8px 0 0">Table-first, additive outputs, explicit provenance, optional dependencies behind extras.</p>
         </div>
       </div>
     </section>
 
     <div class="footer">
-      MolProp Platform is designed to keep MolProp Toolkit workflows intact by remaining table-first and additive.
+      Created by Elokely Lab • University of Wyoming School of Pharmacy. Designed for ranking and triage; not a substitute for experiments.
     </div>
   </div>
+
+  <script>
+    const buttons = Array.from(document.querySelectorAll('.tabbtn'));
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+
+    function activate(name){
+      buttons.forEach(b => b.setAttribute('aria-selected', b.dataset.tab === name ? 'true' : 'false'));
+      tabs.forEach(t => t.classList.toggle('active', t.id === name));
+      history.replaceState(null, '', '#' + name);
+    }
+
+    buttons.forEach(b => b.addEventListener('click', () => activate(b.dataset.tab)));
+
+    const initial = (location.hash || '').replace('#','');
+    if(initial && tabs.some(t => t.id === initial)) activate(initial);
+  </script>
 </body>
 </html>
 
