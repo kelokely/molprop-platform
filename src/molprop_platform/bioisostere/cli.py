@@ -3,7 +3,7 @@ from __future__ import annotations
 
 def main() -> int:
     raise SystemExit(
-        "molprop-bioisostere is a placeholder in molprop-platform v1. "
+        "molscope-bioisostere is a placeholder in molscope v1. "
         "Planned: rule-based bioisostere enumeration + scoring vs. similarity/property deltas."
     )
 
