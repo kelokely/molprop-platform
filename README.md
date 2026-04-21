@@ -15,8 +15,8 @@ The key design principle is **table-in/table-out**. Toolkit produces the table; 
 Most RDKit-heavy workflows are best installed via conda-forge, but the platform itself can be installed with pip.
 
 ```bash
-git clone https://github.com/kelokely/molscope.git
-cd molscope
+git clone https://github.com/kelokely/molprop-platform.git
+cd molprop-platform
 
 pip install -e ".[dev,web,viz]"
 ```
@@ -33,6 +33,12 @@ Start the Streamlit UI:
 
 ```bash
 molscope-web
+```
+
+Legacy alias still works:
+
+```bash
+molprop-web
 ```
 
 Inside the app you can choose:
