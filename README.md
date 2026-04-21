@@ -15,8 +15,8 @@ The key design principle is **table-in/table-out**. Toolkit produces the table; 
 Most RDKit-heavy workflows are best installed via conda-forge, but the platform itself can be installed with pip.
 
 ```bash
-git clone https://github.com/kelokely/molprop-platform.git
-cd molprop-platform
+git clone https://github.com/kelokely/molscope.git
+cd molscope
 
 pip install -e ".[dev,web,viz]"
 ```
