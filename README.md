@@ -73,6 +73,10 @@ Stop:
 docker compose down
 ```
 
+## Docs publishing
+
+The repository includes a GitHub Actions workflow at `.github/workflows/pages.yml` that deploys the `docs/` folder to GitHub Pages on each push to `main`.
+
 ## License
 
 MIT

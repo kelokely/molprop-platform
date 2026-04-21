@@ -1,8 +1,12 @@
-name: Deploy GitHub Pages (docs)
+name: Publish Docs
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
+    paths:
+      - docs/**
+      - .github/workflows/pages.yml
   workflow_dispatch:
 
 permissions:
@@ -11,23 +15,20 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
       - id: deployment
         uses: actions/deploy-pages@v4
-
