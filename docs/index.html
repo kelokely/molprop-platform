@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MolProp Platform</title>
+  <title>MolScope</title>
   <style>
     :root{
       --bg:#0b1220;
@@ -63,14 +63,14 @@
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>MolProp Platform <span class="k">v1.0</span></h1>
+          <h1>MolScope <span class="k">v1.0</span></h1>
           <div class="muted" style="font-size:.92rem">A web + advanced analytics layer on top of MolProp Toolkit tables.</div>
         </div>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <a class="pill" href="quickstart.html">Quickstart</a>
         <a class="pill" href="tools/">Tools</a>
-        <a class="pill" href="https://github.com/kelokely/molprop-platform" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="pill" href="https://github.com/kelokely/molscope" target="_blank" rel="noreferrer">GitHub</a>
       </div>
     </header>
 
@@ -79,7 +79,7 @@
         <div class="card">
           <h2>From MolProp tables to decisions, faster.</h2>
           <p class="muted">
-            MolProp Toolkit stays stable as the “table compiler” and schema authority. MolProp Platform is the fast-moving companion that
+            MolProp Toolkit stays stable as the “table compiler” and schema authority. MolScope is the fast-moving companion that
             adds a Streamlit GUI, interactive Plotly dashboards, and higher-level medchem workflows while keeping existing CLI pipelines intact.
           </p>
           <div class="cta">
@@ -87,7 +87,7 @@
             <a class="btn" href="https://kelokely.github.io/-molprop-toolkit/" target="_blank" rel="noreferrer">MolProp Toolkit docs</a>
           </div>
 
-          <div class="tabs" role="tablist" aria-label="MolProp Platform tabs">
+          <div class="tabs" role="tablist" aria-label="MolScope tabs">
             <button class="tabbtn" role="tab" aria-selected="true" data-tab="overview">Overview</button>
             <button class="tabbtn" role="tab" aria-selected="false" data-tab="install">Install</button>
             <button class="tabbtn" role="tab" aria-selected="false" data-tab="web">Web app</button>
@@ -117,8 +117,8 @@
             <div class="grid2">
               <div class="card">
                 <div class="section-title">Platform (viz + web)</div>
-                <pre><code>git clone https://github.com/kelokely/molprop-platform.git
-cd molprop-platform
+                <pre><code>git clone https://github.com/kelokely/molscope.git
+cd molscope
 
 pip install -e ".[dev,web,viz]"</code></pre>
                 <p class="muted" style="margin:8px 0 0">Installs the Streamlit UI and visualization stack.</p>
@@ -134,19 +134,19 @@ pip install -e ".[core]"</code></pre>
 
           <div id="web" class="tab" role="tabpanel">
             <p class="muted">Start the Streamlit app and choose a workflow tab inside the UI.</p>
-            <pre><code>molprop-web</code></pre>
+            <pre><code>molscope-web</code></pre>
             <p class="muted" style="margin-top:8px">If you installed the core toolkit, the app can run calculators from uploaded SMILES; otherwise it runs in analysis-only mode.</p>
           </div>
 
           <div id="viz" class="tab" role="tabpanel">
             <p class="muted">Generate a PCA/UMAP dashboard from an existing results table.</p>
-            <pre><code>molprop-visualize results.parquet -o viz --method umap</code></pre>
+            <pre><code>molscope-visualize results.parquet -o viz --method umap</code></pre>
             <p class="muted" style="margin-top:8px">Outputs an interactive HTML scatter plot plus a projection CSV.</p>
           </div>
 
           <div id="connect" class="tab" role="tabpanel">
             <p class="muted">
-              MolProp Toolkit and MolProp Platform are connected by a stable interface: the results table schema. Toolkit produces tables;
+              MolProp Toolkit and MolScope are connected by a stable interface: the results table schema. Toolkit produces tables;
               platform consumes them and creates additive artifacts. This keeps existing pipelines intact and makes Milestone B tooling
               easy to build as a table consumer.
             </p>
@@ -154,7 +154,7 @@ pip install -e ".[core]"</code></pre>
 molprop-calc-v5 library.smi -o results.parquet
 
 # 2) visualize and share
-molprop-visualize results.parquet -o viz --method pca</code></pre>
+molscope-visualize results.parquet -o viz --method pca</code></pre>
           </div>
         </div>
 

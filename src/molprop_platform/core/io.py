@@ -8,7 +8,7 @@ import pandas as pd
 def read_table(path: str | Path) -> pd.DataFrame:
     """Read CSV/TSV/Parquet into a DataFrame.
 
-    This intentionally duplicates a tiny bit of functionality so molprop-platform
+    This intentionally duplicates a tiny bit of functionality so molscope
     can operate even when molprop-toolkit isn't installed yet.
 
     When molprop-toolkit is installed, platform tools should prefer importing

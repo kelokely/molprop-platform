@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "molprop-platform"
+name = "molscope"
 version = "1.0.0"
-description = "MolProp Platform: a web + analytics layer that builds on molprop-toolkit tables"
+description = "MolScope: a web + analytics layer that builds on molprop-toolkit tables"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
@@ -50,15 +50,15 @@ dev = [
 ]
 
 [project.scripts]
-molprop-visualize = "molprop_platform.viz.cli:main"
-molprop-web = "molprop_platform.web.cli:main"
+molscope-visualize = "molprop_platform.viz.cli:main"
+molscope-web = "molprop_platform.web.cli:main"
 
 # Placeholders for upcoming tools (wired now, implemented incrementally)
-molprop-pareto = "molprop_platform.pareto.cli:main"
-molprop-mmp = "molprop_platform.mmp.cli:main"
-molprop-sar = "molprop_platform.sar.cli:main"
-molprop-lookup = "molprop_platform.lookup.cli:main"
-molprop-bioisostere = "molprop_platform.bioisostere.cli:main"
+molscope-pareto = "molprop_platform.pareto.cli:main"
+molscope-mmp = "molprop_platform.mmp.cli:main"
+molscope-sar = "molprop_platform.sar.cli:main"
+molscope-lookup = "molprop_platform.lookup.cli:main"
+molscope-bioisostere = "molprop_platform.bioisostere.cli:main"
 
 [tool.ruff]
 line-length = 88

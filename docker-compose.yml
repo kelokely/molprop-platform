@@ -1,0 +1,9 @@
+services:
+  molscope:
+    build: .
+    container_name: molscope
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./runs:/app/runs
+    restart: unless-stopped

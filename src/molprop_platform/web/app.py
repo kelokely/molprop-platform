@@ -17,9 +17,9 @@ from molprop_platform.web.runner import (
     zip_run_directory,
 )
 
-st.set_page_config(page_title="MolProp Platform", layout="wide")
+st.set_page_config(page_title="MolScope", layout="wide")
 
-st.title("MolProp Platform")
+st.title("MolScope")
 st.caption(
     "A table-first companion to MolProp Toolkit. Use the tabs to generate results from SMILES or analyze existing tables."
 )
@@ -51,7 +51,7 @@ _status_row()
 
 st.markdown("""
 Both workflows converge on the same artifact: a MolProp results table (CSV/Parquet) plus a run folder containing logs,
-plots, and optional reports. The safest long-term interface between **molprop-toolkit** and **molprop-platform** is
+plots, and optional reports. The safest long-term interface between **molprop-toolkit** and **molscope** is
 **table-in/table-out**.
 """)
 
@@ -261,7 +261,7 @@ with tab_analyze:
 with tab_about:
     st.subheader("About")
     st.markdown("""
-MolProp Platform is designed to keep MolProp Toolkit intact by remaining table-first and additive.
+MolScope is designed to keep MolProp Toolkit intact by remaining table-first and additive.
 
 If you want the app to run calculators from SMILES, install MolProp Toolkit and RDKit in the same environment. For public installs,
 conda-forge is usually the most reliable path for RDKit.
