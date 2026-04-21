@@ -1,4 +1,4 @@
-"""MolProp Platform.
+"""MolScope.
 
 A companion project to molprop-toolkit that provides interactive apps and
 higher-level analytics that consume molprop-toolkit tables.

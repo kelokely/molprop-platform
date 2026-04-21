@@ -5,9 +5,9 @@ import argparse
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        prog="molprop-web",
+        prog="molscope-web",
         description=(
-            "Start the MolProp Platform Streamlit app. "
+            "Start the MolScope Streamlit app. "
             "This is a v1 skeleton; the app will be expanded to orchestrate molprop-toolkit workflows."
         ),
     )

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 def main() -> int:
     raise SystemExit(
-        "molprop-sar is a placeholder in molprop-platform v1. "
+        "molscope-sar is a placeholder in molscope v1. "
         "Planned: R-group decomposition + SAR matrices for series analysis."
     )
 

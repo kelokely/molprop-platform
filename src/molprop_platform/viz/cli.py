@@ -6,7 +6,7 @@ from pathlib import Path
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        prog="molprop-visualize",
+        prog="molscope-visualize",
         description=(
             "Create quick, interactive chemical-space plots (PCA/UMAP) from a MolProp results table. "
             "This is a v1 skeleton that intentionally keeps behavior simple and table-first."
