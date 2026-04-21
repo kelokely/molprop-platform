@@ -1,12 +1,12 @@
-# MolProp Platform
+# MolScope Server
 
-MolProp Platform is the **expanded companion** to **MolProp Toolkit**. MolProp Toolkit remains the stable “table compiler” and schema authority; MolProp Platform adds a web UI and higher-level analysis modules that consume those tables. The intent is that existing MolProp Toolkit workflows keep working unchanged, while the platform can iterate quickly on user-facing features.
+MolScope Server is the **expanded companion** to **MolProp Toolkit**. MolProp Toolkit remains the stable “table compiler” and schema authority; MolScope Server adds a web UI and higher-level analysis modules that consume those tables. The intent is that existing MolProp Toolkit workflows keep working unchanged, while the platform can iterate quickly on user-facing features.
 
-Documentation site: https://kelokely.github.io/molprop-platform/
+Documentation site: https://kelokely.github.io/molscope/
 
 ## Relationship to MolProp Toolkit
 
-MolProp Toolkit produces analysis-ready CSV/TSV/Parquet tables with reproducible column definitions and provenance. MolProp Platform reads those tables and produces additive artifacts such as interactive Plotly dashboards, basic Pareto viewers, SAR/MMP summaries, optional lookups, and web workflows.
+MolProp Toolkit produces analysis-ready CSV/TSV/Parquet tables with reproducible column definitions and provenance. MolScope Server reads those tables and produces additive artifacts such as interactive Plotly dashboards, basic Pareto viewers, SAR/MMP summaries, optional lookups, and web workflows.
 
 The key design principle is **table-in/table-out**. Toolkit produces the table; platform consumes it. This keeps chemistry standardization and descriptor semantics in one place.
 
@@ -15,8 +15,8 @@ The key design principle is **table-in/table-out**. Toolkit produces the table; 
 Most RDKit-heavy workflows are best installed via conda-forge, but the platform itself can be installed with pip.
 
 ```bash
-git clone https://github.com/kelokely/molprop-platform.git
-cd molprop-platform
+git clone https://github.com/kelokely/molscope.git
+cd molscope
 
 pip install -e ".[dev,web,viz]"
 ```
@@ -32,7 +32,7 @@ pip install -e ".[core]"
 Start the Streamlit UI:
 
 ```bash
-molprop-web
+molscope-server
 ```
 
 Inside the app you can choose:
@@ -46,7 +46,7 @@ Every run writes a self-contained folder (`runs/run_.../`) with inputs, outputs,
 ## CLI example
 
 ```bash
-molprop-visualize results.parquet -o viz --method umap
+molscope-visualize results.parquet -o viz --method umap
 ```
 
 ## License

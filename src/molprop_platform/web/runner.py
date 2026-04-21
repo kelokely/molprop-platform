@@ -120,7 +120,7 @@ def try_run_toolkit_pipeline(
     """Run a simple "SMILES -> results table -> optional report" pipeline.
 
     This intentionally uses subprocess to call molprop-toolkit console scripts.
-    It keeps molprop-platform independent from molprop-toolkit internal APIs.
+    It keeps molscope independent from molprop-toolkit internal APIs.
 
     The UI should only enable this when the commands are available.
     """
@@ -131,7 +131,7 @@ def try_run_toolkit_pipeline(
     if calc_cmd is None:
         raise RuntimeError(
             "molprop-calc-v5 not found. Install molprop-toolkit in this environment "
-            "(e.g., pip install -e '.[core]' in molprop-platform)."
+            "(e.g., pip install -e '.[core]' in molscope)."
         )
 
     out_path = ctx.run_dir / "outputs" / f"results.{out_format}"

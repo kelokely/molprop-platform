@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Quickstart • MolProp Platform</title>
+  <title>Quickstart • MolScope Server</title>
   <style>
     :root{--bg:#0b1220;--text:#e7eefc;--muted:#a9b8d6;--brand:#6aa6ff;--border:rgba(255,255,255,.10)}
     *{box-sizing:border-box}
@@ -24,7 +24,7 @@
 </head>
 <body>
   <div class="container">
-    <p><a href="./">← Home</a> • <a href="tools/">Tools</a> • <a href="https://github.com/kelokely/molprop-platform" target="_blank" rel="noreferrer">GitHub</a></p>
+    <p><a href="./">← Home</a> • <a href="tools/">Tools</a> • <a href="https://github.com/kelokely/molscope" target="_blank" rel="noreferrer">GitHub</a></p>
     <h1>Quickstart</h1>
     <p>
       This guide shows two happy paths: analysis-only (table → viz) and calculator mode (SMILES → table) when MolProp Toolkit is installed.
@@ -40,8 +40,8 @@
       </div>
 
       <div id="install_basic" class="tab active" role="tabpanel">
-        <pre><code>git clone https://github.com/kelokely/molprop-platform.git
-cd molprop-platform
+        <pre><code>git clone https://github.com/kelokely/molscope.git
+cd molscope
 
 pip install -e ".[dev,web,viz]"</code></pre>
         <p>Use this if you already have a MolProp results table and want dashboards and GUI workflows.</p>
@@ -56,14 +56,14 @@ pip install -e ".[core]"</code></pre>
 
     <div class="card">
       <h2 style="margin-top:0">2) Start the web app</h2>
-      <pre><code>molprop-web</code></pre>
+      <pre><code>molscope-server</code></pre>
       <p>In the UI, choose <strong>Generate</strong> (SMILES → table) or <strong>Analyze</strong> (table → artifacts), then download the zip bundle.</p>
     </div>
 
     <div class="card">
       <h2 style="margin-top:0">3) CLI example: visualization</h2>
       <p>If you prefer CLI workflows, you can generate a Plotly dashboard directly.</p>
-      <pre><code>molprop-visualize path/to/results.parquet -o viz --method umap</code></pre>
+      <pre><code>molscope-visualize path/to/results.parquet -o viz --method umap</code></pre>
       <p>Open <code>viz/projection_umap.html</code> in a browser.</p>
     </div>
   </div>
