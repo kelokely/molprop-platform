@@ -75,7 +75,7 @@ docker compose down
 
 ## Docs publishing
 
-The repository includes a GitHub Actions workflow at `.github/workflows/pages.yml` that deploys the `docs/` folder to GitHub Pages on each push to `main`.
+The repository includes a GitHub Actions workflow at `.github/workflows/pages.yml` that deploys the `docs/` folder to GitHub Pages from the repository default branch. Use `https://kelokely.github.io/molscope/` if the repository name is `molscope`; otherwise the URL is `https://kelokely.github.io/<repository-name>/`.
 
 ## License
 
