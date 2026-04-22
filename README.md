@@ -2,7 +2,7 @@
 
 MolScope Server is the **expanded companion** to **MolProp Toolkit**. MolProp Toolkit remains the stable “table compiler” and schema authority; MolScope Server adds a web UI and higher-level analysis modules that consume those tables. The intent is that existing MolProp Toolkit workflows keep working unchanged, while the platform can iterate quickly on user-facing features.
 
-Documentation site: https://kelokely.github.io/molscope/
+Documentation site: https://kelokely.github.io/molprop-platform/
 
 ## Relationship to MolProp Toolkit
 
@@ -15,8 +15,8 @@ The key design principle is **table-in/table-out**. Toolkit produces the table; 
 Most RDKit-heavy workflows are best installed via conda-forge, but the platform itself can be installed with pip.
 
 ```bash
-git clone https://github.com/kelokely/molscope.git
-cd molscope
+git clone https://github.com/kelokely/molprop-platform.git
+cd molprop-platform
 
 pip install -e ".[dev,web,viz]"
 ```
@@ -52,4 +52,3 @@ molscope-visualize results.parquet -o viz --method umap
 ## License
 
 MIT
-
