@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tools • MolScope Server</title>
+  <title>Tools • MolScope</title>
   <style>
     :root{--bg:#0b1220;--text:#e7eefc;--muted:#a9b8d6;--brand:#6aa6ff;--border:rgba(255,255,255,.10)}
     *{box-sizing:border-box}
@@ -20,32 +20,42 @@
 </head>
 <body>
   <div class="container">
-    <p><a href="../">← Home</a> • <a href="../quickstart.html">Quickstart</a> • <a href="https://github.com/kelokely/molscope" target="_blank" rel="noreferrer">GitHub</a></p>
-    <h1>CLI tools</h1>
-    <p>All tools are table-first. Optional dependencies are behind extras such as <code>[viz]</code> and <code>[web]</code>.</p>
+    <p><a href="../">← Home</a> • <a href="../quickstart.html">Quickstart</a> • <a href="https://github.com/kelokely/molprop-platform" target="_blank" rel="noreferrer">GitHub</a></p>
+    <h1>Tools</h1>
+    <p>The server keeps the command language close to the toolkit. Most of the heavy lifting still runs through the MolScope toolkit in the same environment.</p>
 
     <div class="grid">
       <div class="card">
         <h2 style="margin-top:0"><code>molscope-server</code></h2>
-        <p>Starts the Streamlit UI. Supports both SMILES → table (when core toolkit is installed) and table → artifacts workflows.</p>
+        <p>Starts the server workspace. Use it to upload files, run commands, inspect outputs, and download the full run directory.</p>
       </div>
 
       <div class="card">
         <h2 style="margin-top:0"><code>molscope-visualize</code></h2>
-        <p>Creates a PCA/UMAP projection from a results table and writes an interactive HTML scatter plot plus projection CSV.</p>
+        <p>Builds a PCA or UMAP projection from a MolScope table and writes an HTML view plus a projection CSV.</p>
       </div>
 
       <div class="card">
-        <h2 style="margin-top:0">Planned</h2>
-        <p><code>molscope-mmp</code>, <code>molscope-sar</code>, <code>molscope-pareto</code>, <code>molscope-lookup</code>, <code>molscope-bioisostere</code>.</p>
+        <h2 style="margin-top:0"><code>molscope-mmp</code></h2>
+        <p>Forwards to the toolkit MMP workflow when the toolkit is installed in the same environment.</p>
       </div>
 
       <div class="card">
-        <h2 style="margin-top:0">Core toolkit</h2>
-        <p>For calculators and schema authority, see <a href="https://kelokely.github.io/-molprop-toolkit/" target="_blank" rel="noreferrer">MolProp Toolkit docs</a>.</p>
+        <h2 style="margin-top:0"><code>molscope-sar</code></h2>
+        <p>Forwards to the toolkit SAR workflow when the toolkit is installed in the same environment.</p>
+      </div>
+
+      <div class="card">
+        <h2 style="margin-top:0">Server command surface</h2>
+        <p><code>calc</code>, <code>prep</code>, <code>analyze</code>, <code>report</code>, <code>picklists</code>, <code>integrate</code>, <code>compare</code>, <code>sar</code>, <code>mmp</code>, <code>search</code>, <code>series</code>, <code>similarity</code>, <code>featurize</code>, <code>retro</code>, <code>learnings</code>, <code>dashboard</code>, <code>portal</code>, and <code>schema</code>.</p>
+      </div>
+
+      <div class="card">
+        <h2 style="margin-top:0">Toolkit docs</h2>
+        <p>The toolkit docs stay the source of truth for table semantics, schema rules, and command details.</p>
+        <p><a href="https://kelokely.github.io/-molprop-toolkit/" target="_blank" rel="noreferrer">Open toolkit docs</a></p>
       </div>
     </div>
   </div>
 </body>
 </html>
-

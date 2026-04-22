@@ -6,10 +6,7 @@ import argparse
 def main() -> int:
     parser = argparse.ArgumentParser(
         prog="molscope-server",
-        description=(
-            "Start the MolScope Server Streamlit app. "
-            "This is a v1 skeleton; the app will be expanded to orchestrate molprop-toolkit workflows."
-        ),
+        description="Start the MolScope server workspace.",
     )
     parser.add_argument(
         "--host",

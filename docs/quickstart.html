@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Quickstart • MolScope Server</title>
+  <title>Quickstart • MolScope</title>
   <style>
     :root{--bg:#0b1220;--text:#e7eefc;--muted:#a9b8d6;--brand:#6aa6ff;--border:rgba(255,255,255,.10)}
     *{box-sizing:border-box}
@@ -15,68 +15,46 @@
     pre{background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:14px;padding:14px;overflow:auto;color:var(--text)}
     code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;font-size:.92rem}
     p{color:var(--muted);line-height:1.6}
-    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .tabbtn{padding:9px 12px;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer}
-    .tabbtn[aria-selected="true"]{background:rgba(106,166,255,.18);color:var(--text);border-color:rgba(106,166,255,.35)}
-    .tab{display:none;margin-top:14px}
-    .tab.active{display:block}
   </style>
 </head>
 <body>
   <div class="container">
-    <p><a href="./">← Home</a> • <a href="tools/">Tools</a> • <a href="https://github.com/kelokely/molscope" target="_blank" rel="noreferrer">GitHub</a></p>
+    <p><a href="./">← Home</a> • <a href="tools/">Tools</a> • <a href="https://github.com/kelokely/molprop-platform" target="_blank" rel="noreferrer">GitHub</a></p>
     <h1>Quickstart</h1>
-    <p>
-      This guide shows two happy paths: analysis-only (table → viz) and calculator mode (SMILES → table) when MolProp Toolkit is installed.
-      Both workflows produce a run folder that you can zip and share.
-    </p>
+    <p>Use this when you want the server workspace up quickly and you want the full MolScope workflow available inside it.</p>
 
     <div class="card">
       <h2 style="margin-top:0">1) Install</h2>
+      <pre><code>git clone https://github.com/kelokely/molprop-platform.git
+cd molprop-platform
 
-      <div class="tabs" role="tablist" aria-label="Install tabs">
-        <button class="tabbtn" role="tab" aria-selected="true" data-tab="install_basic">Platform (web + viz)</button>
-        <button class="tabbtn" role="tab" aria-selected="false" data-tab="install_core">Add core toolkit</button>
-      </div>
-
-      <div id="install_basic" class="tab active" role="tabpanel">
-        <pre><code>git clone https://github.com/kelokely/molscope.git
-cd molscope
-
-pip install -e ".[dev,web,viz]"</code></pre>
-        <p>Use this if you already have a MolProp results table and want dashboards and GUI workflows.</p>
-      </div>
-
-      <div id="install_core" class="tab" role="tabpanel">
-        <pre><code># installs MolProp Toolkit from GitHub (until core is on PyPI)
+pip install -e ".[dev,web,viz]"
 pip install -e ".[core]"</code></pre>
-        <p>Use this to enable calculator mode in the web app (<code>molprop-calc-v5</code> available).</p>
-      </div>
+      <p>The first line installs the server and projection stack. The second line brings the MolScope toolkit into the same environment.</p>
     </div>
 
     <div class="card">
-      <h2 style="margin-top:0">2) Start the web app</h2>
+      <h2 style="margin-top:0">2) Start the server</h2>
       <pre><code>molscope-server</code></pre>
-      <p>In the UI, choose <strong>Generate</strong> (SMILES → table) or <strong>Analyze</strong> (table → artifacts), then download the zip bundle.</p>
+      <p>The app opens one workspace for the run. You can keep adding files and outputs to that same workspace.</p>
     </div>
 
     <div class="card">
-      <h2 style="margin-top:0">3) CLI example: visualization</h2>
-      <p>If you prefer CLI workflows, you can generate a Plotly dashboard directly.</p>
+      <h2 style="margin-top:0">3) Run a simple path</h2>
+      <p>Add a <code>.smi</code> file in the Workspace tab, then open Generate and run the default pipeline.</p>
+      <p>That gives you a results table, optional report and picklists, and an optional quick projection in the same run folder.</p>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top:0">4) Run table workflows</h2>
+      <p>Once a results table is in the workspace, the Commands tab can run compare, SAR, MMP, search, similarity, featurize, retro, learnings, dashboard, portal, and schema checks from the same place.</p>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top:0">5) Quick CLI projection</h2>
       <pre><code>molscope-visualize path/to/results.parquet -o viz --method umap</code></pre>
-      <p>Open <code>viz/projection_umap.html</code> in a browser.</p>
+      <p>This writes a projection CSV and an interactive HTML view.</p>
     </div>
   </div>
-
-  <script>
-    const buttons = Array.from(document.querySelectorAll('.tabbtn'));
-    const tabs = Array.from(document.querySelectorAll('.tab'));
-    function activate(name){
-      buttons.forEach(b => b.setAttribute('aria-selected', b.dataset.tab === name ? 'true' : 'false'));
-      tabs.forEach(t => t.classList.toggle('active', t.id === name));
-    }
-    buttons.forEach(b => b.addEventListener('click', () => activate(b.dataset.tab)));
-  </script>
 </body>
 </html>
-

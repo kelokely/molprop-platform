@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "molscope"
-version = "1.0.0"
-description = "MolScope Server: a web + analytics layer that builds on molprop-toolkit tables"
+version = "1.1.0"
+description = "MolScope server workspace for MolScope toolkit workflows"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
@@ -22,7 +22,6 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# Core integration: installs molprop-toolkit from GitHub (good for now; switch to PyPI once you publish core).
 core = [
   "molprop-toolkit @ git+https://github.com/kelokely/-molprop-toolkit.git",
 ]
@@ -50,15 +49,23 @@ dev = [
 ]
 
 [project.scripts]
-molscope-visualize = "molprop_platform.viz.cli:main"
-molscope-server = "molprop_platform.web.cli:main"
+molscope-visualize = "molscope.viz.cli:main"
+molscope-server = "molscope.web.cli:main"
+molscope-mmp = "molscope.mmp.cli:main"
+molscope-sar = "molscope.sar.cli:main"
 
-# Placeholders for upcoming tools (wired now, implemented incrementally)
-molscope-pareto = "molprop_platform.pareto.cli:main"
-molscope-mmp = "molprop_platform.mmp.cli:main"
-molscope-sar = "molprop_platform.sar.cli:main"
-molscope-lookup = "molprop_platform.lookup.cli:main"
-molscope-bioisostere = "molprop_platform.bioisostere.cli:main"
+[project.urls]
+Homepage = "https://kelokely.github.io/molprop-platform/"
+Repository = "https://github.com/kelokely/molprop-platform"
+Documentation = "https://kelokely.github.io/molprop-platform/"
+Issues = "https://github.com/kelokely/molprop-platform/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["molscope*"]
 
 [tool.ruff]
 line-length = 88
@@ -70,4 +77,3 @@ ignore = ["E501", "B008"]
 
 [tool.black]
 line-length = 88
-

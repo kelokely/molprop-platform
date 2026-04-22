@@ -1,55 +1,63 @@
-# MolScope Server
+# MolScope
 
-MolScope Server is the **expanded companion** to **MolProp Toolkit**. MolProp Toolkit remains the stable “table compiler” and schema authority; MolScope Server adds a web UI and higher-level analysis modules that consume those tables. The intent is that existing MolProp Toolkit workflows keep working unchanged, while the platform can iterate quickly on user-facing features.
+MolScope gives the MolScope toolkit a server workspace.
 
-Documentation site: https://kelokely.github.io/molscope/
+You can keep one run open, upload files, run the toolkit commands, inspect the outputs, and download the full bundle when you are done.
 
-## Relationship to MolProp Toolkit
+Documentation site: https://kelokely.github.io/molprop-platform/
 
-MolProp Toolkit produces analysis-ready CSV/TSV/Parquet tables with reproducible column definitions and provenance. MolScope Server reads those tables and produces additive artifacts such as interactive Plotly dashboards, basic Pareto viewers, SAR/MMP summaries, optional lookups, and web workflows.
+## What lives here
 
-The key design principle is **table-in/table-out**. Toolkit produces the table; platform consumes it. This keeps chemistry standardization and descriptor semantics in one place.
+MolScope Toolkit stays responsible for the chemistry table, schema, and command line workflow.
+
+This repo adds:
+
+- a Streamlit server workspace
+- quick PCA and UMAP views
+- a simple way to run the current MolScope commands from one place
 
 ## Install
 
-Most RDKit-heavy workflows are best installed via conda-forge, but the platform itself can be installed with pip.
-
 ```bash
-git clone https://github.com/kelokely/molscope.git
-cd molscope
+git clone https://github.com/kelokely/molprop-platform.git
+cd molprop-platform
 
 pip install -e ".[dev,web,viz]"
 ```
 
-To enable calculator mode in the web app (SMILES → results table), install the core toolkit integration extra. This pulls MolProp Toolkit from GitHub until the core is published on PyPI.
+To run the full toolkit workflow from the server, install the toolkit in the same environment:
 
 ```bash
 pip install -e ".[core]"
 ```
 
-## Web app (supports both modes)
-
-Start the Streamlit UI:
+## Start the server
 
 ```bash
 molscope-server
 ```
 
-Inside the app you can choose:
+Inside the app you can:
 
-Generate (SMILES → table): upload a `.smi` file and run `molprop-calc-v5`, optionally followed by report and picklists. This mode requires that MolProp Toolkit is installed in the same environment.
+- upload SMILES files and build a results table
+- upload existing results tables and run report, picklists, compare, SAR, MMP, search, similarity, featurize, retro, learnings, dashboard, and portal workflows
+- preview tables, inspect logs, and download the full run workspace
 
-Analyze (table → artifacts): upload an existing results table (`.parquet`/`.csv`) and generate interactive PCA/UMAP plots, and optionally run report/picklists if the corresponding toolkit commands are present.
-
-Every run writes a self-contained folder (`runs/run_.../`) with inputs, outputs, and logs, and the app provides a “download zip” button for sharing.
-
-## CLI example
+## Quick visualization
 
 ```bash
 molscope-visualize results.parquet -o viz --method umap
 ```
 
+## Toolkit wrappers
+
+The repo also ships:
+
+- `molscope-mmp`
+- `molscope-sar`
+
+These forward to the toolkit commands when the toolkit is installed in the same environment.
+
 ## License
 
 MIT
-
