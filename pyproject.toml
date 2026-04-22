@@ -18,14 +18,11 @@ classifiers = [
 
 # Keep base install intentionally light.
 dependencies = [
+  "molprop-toolkit @ git+https://github.com/kelokely/-molprop-toolkit.git",
   "pandas>=1.5",
 ]
 
 [project.optional-dependencies]
-core = [
-  "molprop-toolkit @ git+https://github.com/kelokely/-molprop-toolkit.git",
-]
-
 web = [
   "streamlit>=1.31",
 ]
@@ -66,6 +63,9 @@ package-dir = {"" = "src"}
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["molscope*"]
+
+[tool.setuptools.package-data]
+"molscope.resources" = ["*.pkl.gz"]
 
 [tool.ruff]
 line-length = 88

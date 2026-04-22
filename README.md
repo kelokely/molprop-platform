@@ -25,12 +25,6 @@ cd molprop-platform
 pip install -e ".[dev,web,viz]"
 ```
 
-To run the full toolkit workflow from the server, install the toolkit in the same environment:
-
-```bash
-pip install -e ".[core]"
-```
-
 ## Start the server
 
 ```bash
@@ -41,7 +35,8 @@ Inside the app you can:
 
 - upload SMILES files and build a results table
 - upload existing results tables and run report, picklists, compare, SAR, MMP, search, similarity, featurize, retro, learnings, dashboard, and portal workflows
-- preview tables, inspect logs, and download the full run workspace
+- open property tabs for CNS, oral, safety, exposure, lead, and series views
+- preview tables, inspect logs, and download outputs or the full run workspace
 
 ## Quick visualization
 

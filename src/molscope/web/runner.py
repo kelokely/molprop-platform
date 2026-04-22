@@ -31,7 +31,7 @@ class CommandResult:
 
 
 def make_run_dir(base_dir: str | Path = "runs") -> RunContext:
-    base = Path(base_dir)
+    base = Path(base_dir).expanduser().resolve()
     base.mkdir(parents=True, exist_ok=True)
     ts = time.strftime("%Y%m%d_%H%M%S")
     run_dir = base / f"run_{ts}_{int(time.time())}"
@@ -129,6 +129,47 @@ def workspace_directories(ctx: RunContext) -> list[str]:
     return items
 
 
+def workspace_snapshot(ctx: RunContext) -> dict[str, tuple[str, int]]:
+    snapshot: dict[str, tuple[str, int]] = {}
+    for path in sorted(ctx.run_dir.rglob("*")):
+        rel = path.relative_to(ctx.run_dir)
+        if not rel.parts:
+            continue
+        if rel.parts[0] == "logs":
+            continue
+        kind = "dir" if path.is_dir() else "file"
+        snapshot[str(rel)] = (kind, path.stat().st_mtime_ns)
+    return snapshot
+
+
+def workspace_changes(
+    ctx: RunContext,
+    before: Mapping[str, tuple[str, int]],
+    *,
+    limit: int = 12,
+) -> list[str]:
+    after = workspace_snapshot(ctx)
+    changed_dirs: list[str] = []
+    changed_files: list[str] = []
+    for rel, (kind, mtime_ns) in after.items():
+        if rel not in before or before[rel][1] != mtime_ns:
+            if kind == "dir":
+                changed_dirs.append(rel)
+            else:
+                changed_files.append(rel)
+
+    selected: list[str] = []
+    for rel in sorted(changed_dirs, key=lambda value: (value.count("/"), value)):
+        if any(rel == kept or rel.startswith(f"{kept}/") for kept in selected):
+            continue
+        selected.append(rel)
+    for rel in sorted(changed_files):
+        if any(rel.startswith(f"{kept}/") for kept in selected):
+            continue
+        selected.append(rel)
+    return selected[:limit]
+
+
 def write_run_metadata(ctx: RunContext, payload: Dict[str, Any]) -> Path:
     meta = {
         "created_at": ctx.created_at,
@@ -187,6 +228,7 @@ def run_generate_pipeline(
     *,
     profile: str = "extended",
     out_format: str = "parquet",
+    output_relative: str | None = None,
     run_report: bool = True,
     run_picklists: bool = False,
     run_visualize: bool = False,
@@ -194,7 +236,11 @@ def run_generate_pipeline(
 ) -> Dict[str, Any]:
     extra_args = extra_args or {}
     results: Dict[str, Any] = {"steps": []}
-    out_path = ctx.run_dir / "outputs" / f"results.{out_format}"
+    if output_relative:
+        out_path = ctx.run_dir / output_relative
+    else:
+        out_path = ctx.run_dir / "outputs" / f"results.{out_format}"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
 
     calc_args = [
         "--profile",
